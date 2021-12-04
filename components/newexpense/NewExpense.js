@@ -2,10 +2,21 @@ import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+
+    const handleSubmittedData = (formSubmittedData) => {
+        console.log(formSubmittedData);
+        const formDataApp = {
+            ...formSubmittedData,
+            id: Math.floor(Math.random() * 1000)
+        }
+        props.onSubmittedAppData(formDataApp);
+    }
+    
+    
     return (
         <div className="new-expense">
-            <ExpenseForm />
+            <ExpenseForm onSubmittedData={ handleSubmittedData } />
         </div>
     );
 }

@@ -1,10 +1,10 @@
+import React, {useState} from 'react';
 import "./App.css";
 import Expenses from "./components/expensemodule/Expenses";
 import Card from "./components/expensemodule/Card";
 import NewExpense from "./components/newexpense/NewExpense";
 
-const App = () => {
-  const expense = [
+const DUMMY_EXP = [
     {
       date: new Date(2022, 2, 28),
       title: "Maintences",
@@ -25,10 +25,22 @@ const App = () => {
       title: "Loan",
       amount: 2000,
     },
-  ];
+];
+
+const App = () => {
+
+  const [expense, setExpenses ] = useState(DUMMY_EXP);
+
+  const handleSubmittedAppData = (formDataApp) => {
+
+    const newData = [ formDataApp, ...expense ];
+    setExpenses(newData);
+    console.log(formDataApp);
+    
+  }
   return (
     <Card className="section">
-      <NewExpense />
+      <NewExpense onSubmittedAppData={ handleSubmittedAppData } />
       <Expenses items={expense} />
     </Card>
   );
