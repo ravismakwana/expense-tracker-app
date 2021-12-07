@@ -10,7 +10,9 @@ const NewExpense = (props) => {
             ...formSubmittedData,
             id: Math.floor(Math.random() * 1000)
         }
-        props.onSubmittedAppData(formDataApp);
+
+        props.onSubmittedDataApp(formDataApp);
+        
     }
     
     
